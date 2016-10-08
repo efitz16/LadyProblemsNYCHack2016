@@ -30,9 +30,9 @@
 
 <footer>
   <% if @bill.created_at.strftime("%m-%d-%Y") != @bill.updated_at.strftime("%m-%d-%Y") %>
-	Bill last edited at: <%= @bill.updated_at.strftime("%m-%d-%Y") %>
+	Updated: <%= @bill.updated_at.strftime("%m-%d-%Y") %>
   <% else %>
-    Bill created at: <%= @bill.created_at.strftime("%m-%d-%Y") %><br>
+  Created: <%= @bill.created_at.strftime("%m-%d-%Y") %><br>
   <% end %>
 
   <% if @creator  == current_user %>

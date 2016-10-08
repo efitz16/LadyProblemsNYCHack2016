@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :username, :email, presence:true, uniqueness:true
   validates :password, length: {minimum: 8, maximum: 50}
   validates_confirmation_of :password
+  validates :birthday, presence: true
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
 

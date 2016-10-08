@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #loginform, #registerform, .btn{
-  margin-top: 5%;
+  margin-top: 2%;
 }
 
+.btn{
+  float:right;
+}
+
+.registerlink{
+  padding-top: 2%;
+}

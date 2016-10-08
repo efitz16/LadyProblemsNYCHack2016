@@ -7,10 +7,10 @@
   <%= f.collection_select :state, User::STATES, :to_s, :to_s, {:prompt => 'Select'} %>
   <%= f.collection_select :insurance_company, User::INSURANCE_COMPANIES, :to_s, :to_s, {:prompt => 'Select'} %>
   <%= f.text_field :policy_name %>
-  <%= f.date_select :birthday, start_year: 1915 %>
+  <%= f.date_select :birthday, start_year: 1915, include_blank: true, default: nil %>
   <%= f.collection_select :race, User::RACE, :to_s, :to_s, {:prompt => 'Select'}%>
   <%= f.form_group do %>
     <%= f.check_box :medical_professional, label: 'I am a medical professional.'%>
-    <%= f.submit yield(:button_text), :class =>"btn btn-primary center-block" %>
+    <%= f.submit yield(:button_text), :class =>"btn btn-primary col-sm-3" %>
   <%end%>
 <% end %>

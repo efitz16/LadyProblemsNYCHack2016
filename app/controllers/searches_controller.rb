@@ -3,8 +3,14 @@ class SearchesController < ApplicationController
 	end
 
 	def new
+		binding.pry
 		@results = Entry.search(params["search"])
 		@results = @results.paginate(:page => params[:page], :per_page => 6)
+		
+		if !(@results.empty?)
+			@results
+		end
+
 	end
 
 <<<<<<< HEAD

@@ -32,7 +32,7 @@ entry1 = one.entries.create!({procedure_name: ["General Checkup", "Hysterectomy"
                         year: 2010 + rand(6)
                         })
 
-bill1 = entry1.bills.create!({total_without_coverage: rand(3000.00..1500.00),
+bill1 = entry1.bills.create!({total_without_coverage: rand(1500.00..3000.00),
                               insurance_company: ["Lady Problems Insurance","Hackathon Insurance"].sample,
                               policy_name: ["Family Plan B-12", "Individual Platinum"].sample,
                               final_cost: rand(40.00..1500.00)
@@ -59,7 +59,7 @@ entry2 = two.entries.create!({procedure_name: ["General Checkup", "Hysterectomy"
                               year: 2010 + rand(6)
                               })
 
-bill2 = entry2.bills.create!({total_without_coverage: rand(3000.00..1500.00),
+bill2 = entry2.bills.create!({total_without_coverage: rand(1500.00..3000.00),
                               insurance_company: ["Lady Problems Insurance","Hackathon Insurance"].sample,
                               policy_name: ["Family Plan B-12", "Individual Platinum"].sample,
                               final_cost: rand(40.00..1500.00)
@@ -70,7 +70,7 @@ bill2 = entry2.bills.create!({total_without_coverage: rand(3000.00..1500.00),
     quantity: [nil, 12, 5, 2].sample                                                                             })
     end
 
-bill2b = entry2.bills.create!({total_without_coverage: rand(3000.00..1500.00),
+bill2b = entry2.bills.create!({total_without_coverage: rand(1500.00..3000.00),
                                   insurance_company: ["Lady Problems Insurance","Hackathon Insurance"].sample,
                                   policy_name: ["Family Plan B-12", "Individual Platinum"].sample,
                                   final_cost: rand(40.00..1500.00)
@@ -89,7 +89,7 @@ entry3 = three.entries.create!({procedure_name: ["General Checkup", "Hysterectom
                             year: 2010 + rand(6)
                             })
 
-bill3 = entry3.bills.create!({total_without_coverage: rand(3000.00..1500.00),
+bill3 = entry3.bills.create!({total_without_coverage: rand(1500.00..3000.00),
                                   insurance_company: ["Lady Problems Insurance","Hackathon Insurance"].sample,
                                   policy_name: ["Family Plan B-12", "Individual Platinum"].sample,
                                   final_cost: rand(40.00..1500.00)

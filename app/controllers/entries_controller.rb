@@ -57,7 +57,7 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:procedure_name, :city, :state, :details, :year)
+    params.require(:entry).permit(:procedure_name, :city, :state, :details, :facility_name, :year)
   end
 
   def current_entry

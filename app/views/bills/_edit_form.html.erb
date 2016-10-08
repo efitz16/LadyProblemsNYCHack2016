@@ -1,13 +1,13 @@
-<%= form_for @entry do |f| %>
-  <% if @entry.errors.any? %>
+<%= form_for [@entry, @bill] do |f| %>
+  <% if @bill.errors.any? %>
     <ul>
-      <% @entry.errors.full_messages.each do |error| %>
+      <% @bill.errors.full_messages.each do |error| %>
         <li><%= error %></li>
       <% end %>
     </ul>
   <% end %>
 
-
+  <div>Areas with asterisks are mandatory.</div>
   <p>
     <div>*Procedure Name</div>
   	<%= f.text_field :procedure_name, :value => @entry.procedure_name %>
@@ -19,8 +19,13 @@
   </p>
 
   <p>
-  	<div>Facility Name</div>
-  	<%= f.text_field :facility_name, :value => @entry.facility_name  %>
+  	<div>Insurance Company</div>
+    <%= f.collection_select :insurance_company, User::INSURANCE_COMPANIES, :to_s, :to_s, :selected => @entry.user.insurance_company %>
+  </p>
+
+  <p>
+  	<div>Policy Name</div>
+    <%= f.text_field :policy_name %>
   </p>
 
   <div>

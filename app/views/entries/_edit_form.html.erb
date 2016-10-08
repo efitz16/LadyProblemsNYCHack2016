@@ -1,34 +1,48 @@
-<%= form_for [@entry, @bill] do |f| %>
-  <% if @bill.errors.any? %>
+
+<%= form_for @entry do |f| %>
+  <% if @entry.errors.any? %>
     <ul>
-      <% @bill.errors.full_messages.each do |error| %>
+      <% @entry.errors.full_messages.each do |error| %>
         <li><%= error %></li>
       <% end %>
     </ul>
   <% end %>
 
-  <p>
-  	<div>*Total Before Coverage </div>
-  	<%= f.number_field :total_without_coverage, step: :any, :value => @bill.total_without_coverage %>
+  <div>Areas with asterisks are mandatory.</div>
+    <p>
+    <div>*Procedure Name</div>
+  	<%= f.text_field :procedure_name %>
   </p>
 
   <p>
-  	<div> Insurance Company </div>
-  	<%= f.text_field :insurance_company, :value => @bill.insurance_company%>
+  	<div>*Year of Procedure</div>
+    <%= f.select :year, options_for_select(1913..Date.today.year, Date.today.year) %>
   </p>
 
   <p>
-  	<div> Policy Name </div>
-  	<%= f.text_field :policy_name, :value => @bill.policy_name %>
+  	<div>Facility Name</div>
+  	<%= f.text_field :facility_name %>
+  </p>
+
+  <div>
+  <span>
+  	<%= f.label :city %>
+  	<%= f.text_field :city, :value => @user_city %>
+  </span>
+
+  <span>
+  	<%= f.label :state %>
+  	<%= f.collection_select :state, Entry::STATES, :to_s, :to_s, :selected => current_user.state %>
+  </span>
+  </div>
+
+  <p>
+  	<%= f.label :details %><br>
+  	<%= f.text_area :details, cols: 50, rows: 5 %>
   </p>
 
   <p>
-  	<div>*Final Cost</div>
-  	<%= f.number_field :final_cost, step: :any, :value => @bill.policy_name%>
-  </p>
-
-  <p>
-    <%= f.submit "Update Bill" %>
+    <%= f.submit "Update Entry" %>
   </p>
 
 <% end %>

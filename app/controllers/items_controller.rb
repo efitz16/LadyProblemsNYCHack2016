@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update_attributes(item_params)
-      redirect_to @item
+      redirect_to @bill
       flash.now[:notice]="Item updated."
     else
       render 'edit'

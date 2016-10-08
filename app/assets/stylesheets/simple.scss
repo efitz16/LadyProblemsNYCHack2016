@@ -1,0 +1,33 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Pacifico';
+@import "partials/base";
+
+$open-sans: 'Open Sans', sans-serif;
+$pacifico:'Pacifico', sans-serif;
+
+
+body{
+  padding: 80px 50px;
+}
+
+
+.navbar{
+  padding: 5px 20px;
+  background-color: #AFD8DE;
+  border-bottom: none;
+  font-family: $open-sans;
+  
+  .navbar-header{
+    @include links;
+  
+    .navbar-brand{
+      font-size: 2.5rem;
+      font-family: $pacifico;
+    }
+  }
+
+  .navbar-nav>li{
+    @include links;
+    font-size: 1.5rem;
+    margin: 2px;
+  }
+}

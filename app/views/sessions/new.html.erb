@@ -1,20 +1,20 @@
-<div>
-  <h1>Login</h1>
-  <%if flash[:notice]%>
-    <div class="notice"><%=flash[:notice]%></div>
-  <%end%>
-
-  <%= form_for(:session, url:login_path) do |f| %>
-    <div>
-      <%=f.label :email, "Email:"%>
-      <%=f.email_field :email%>
-   </div>
-   <div>
-      <%=f.label :password, "Password:"%>
-     <%=f.password_field :password%>
-   </div>
-   <%=f.submit "log in"%>
-  <%end%>
-
-<p><%=link_to "Don't have an account? Sign up!", new_user_path%></p>
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Login</h1>
+    <div class="col-sm-10 col-sm-offset-1">
+        <%if flash[:notice]%>
+          <div class="text-center"><%=flash[:notice]%></div>
+        <%end%>
+        <div id="loginform">
+          <%= bootstrap_form_for(:session, url:login_path, label_errors:true, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
+            <%=f.email_field :email%>
+            <%=f.password_field :password%>
+            <p class="registerlink text-center"><%=link_to "Don't have an account? Sign up!", new_user_path%></p>
+            <%= f.form_group do %>
+              <%=f.submit "log in", :class =>"btn btn-primary col-sm-3"%>
+            <%end%>
+          <%end%>
+        </div>
+    </div>
+  </div>
 </div>

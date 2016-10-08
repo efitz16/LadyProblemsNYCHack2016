@@ -15,4 +15,14 @@ class Entry < ApplicationRecord
 
   	results = result.sort{|x, y| (x =~ search_term) <=> (y =~ search_term) }
   end
+
+  def total_cost
+    length = self.bills.count
+
+    if length == 0
+      0
+    else
+      self.bills.map { |bill| bill.final_cost.to_f}.reduce(0, :+)
+    end
+  end
 end

@@ -8,12 +8,11 @@ class SearchesController < ApplicationController
 		@results = @results.paginate(:page => params[:page], :per_page => 6)
 		
 		if !(@results.empty?)
-			@results
+			@min_max = @results.map { |result| result.total_cost }
 		end
 
 	end
 
-<<<<<<< HEAD
 	def data
 		respond_to do |format|
 			format.json {
@@ -22,9 +21,6 @@ class SearchesController < ApplicationController
 		end
 	end
 
-
-end
-=======
 	def customize
 		binding.pry
 		@results = Entry.search(params["query"])
@@ -40,4 +36,3 @@ end
 
 	end
 end
->>>>>>> halfway done with form for customization

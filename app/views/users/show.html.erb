@@ -1,7 +1,33 @@
-<div>
   <%if flash[:notice]%>
     <div class="notice"><%=flash[:notice]%></div>
   <%end%>
 
-  <%=@user.username%>
+<div>
+<% if @user.medical_professional %>
+  <span><%=image_tag("Caduceus.png", size: "50")%></span>
+<%end%>
+
+  <span class='username'><%=@user.username%></span><span>, <%=@age%></span>
 </div>
+  <div> <%=@user.city%>, <%=@user.state%></div>
+  <div><%=@user.race%></div>
+  <div><%=@user.insurance_company%></div>
+<br>
+  <div><%=@user.bio%></div>
+<br>
+  <% @user.entries.each do |e|%>
+    <div>
+      <%=e.year %> <%=e.procedure_name%><br>
+      <%=link_to 'View Details', e%>
+      <% if @user == current_user%>
+      <br><%=link_to 'Edit', "/entries/#{e.id}/edit"%><br>
+      <%=form_for(e, :html => { :method => :delete }) do |f|%>
+             <%= f.submit "Delete" %>
+      <%end%>
+      <%end%>
+    </div>
+  <%end%>
+
+  <% if @user == current_user %>
+    <br><div><%=link_to 'Create Entry', new_entry_path%></div><br>
+  <%end%>

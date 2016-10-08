@@ -34,12 +34,14 @@ class EntriesController < ApplicationController
   end
 
   def show
-    # binding.pry
-
     @entry = current_entry
 
-    if !@entry
+    if @entry == nil
       redirect_to root_path
+    else
+      @user = @entry.user
+      @bills = @entry.bills
+      @creator = current_user?(@user)
     end
   end
 

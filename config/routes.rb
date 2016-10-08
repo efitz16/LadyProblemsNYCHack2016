@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'searches#index'
 
+  get 'searches/data', :defaults => { :format => 'json' }
+
   get '/login', to: "sessions#new"
 
   post '/login', to: "sessions#create"

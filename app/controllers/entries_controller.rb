@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   before_action :log_in, except: [:index, :show]
-  before_action :redirect, only: [:create, :update, :destroy]
   before_action :current_entry, except: [:index, :new, :create]
+  before_action :redirect, only: [:edit, :update, :destroy]
 
   def index
     @recent_entries = Entry.order(created_at: :desc)
@@ -9,6 +9,10 @@ class EntriesController < ApplicationController
 
   def new
     @entry = current_user.entries.new
+  end
+
+  def edit
+
   end
 
   def create

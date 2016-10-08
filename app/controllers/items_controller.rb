@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
       flash.now[:notice]="Item saved."
     else
       render 'new'
+      # redirect_back(fallback_location: fallback_location)
       flash.now[:notice]="Sorry! Something went wrong. Please check that you've filled out all required information."
     end
   end

@@ -17,10 +17,10 @@
 <br>
   <% @user.entries.each do |e|%>
     <div>
-      <%=e.year %> <%=e.procedure_name%>
+      <%=e.year %> <%=e.procedure_name%><br>
       <%=link_to 'View Details', e%>
       <% if @user == current_user%>
-      <%=link_to 'Edit', "/entries/#{e.id}/edit"%>
+      <br><%=link_to 'Edit', "/entries/#{e.id}/edit"%><br>
       <%=form_for(e, :html => { :method => :delete }) do |f|%>
              <%= f.submit "Delete" %>
       <%end%>
@@ -29,5 +29,5 @@
   <%end%>
 
   <% if @user == current_user %>
-    <div><%=link_to 'Create Entry', new_entry_path%></div>
+    <br><div><%=link_to 'Create Entry', new_entry_path%></div><br>
   <%end%>

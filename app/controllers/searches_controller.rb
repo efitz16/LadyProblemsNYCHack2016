@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
 	def index
-		binding.pry
+
+		@results = Entry.search(params["search"])
 	end
 end
 

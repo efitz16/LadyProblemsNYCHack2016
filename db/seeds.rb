@@ -99,3 +99,8 @@ bill3 = entry3.bills.create!({total_without_coverage: rand(3000.00..1500.00),
     price: rand(10.00..400.00),
     quantity: [nil, 12, 5, 2].sample                                                                             })
     end
+
+# user = User.create(username: , email: , password: , city: , state: , insurance_company: , policy_name: , bio: , medical_professional: , race: , birthday: )
+
+# user = User.create(username: "User1", email: "user1@me.com", password: "Password1", city: , state: , insurance_company: , policy_name: , bio: , medical_professional: , race: , birthday: )
+

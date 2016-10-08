@@ -7,14 +7,15 @@
     </ul>
   <% end %>
 
-  <p>
+  <div>Areas with asterisks are mandatory.</div>
+    <p>
     <div>*Procedure Name</div>
   	<%= f.text_field :procedure_name %>
   </p>
 
   <p>
   	<div>*Year of Procedure</div>
-  	<%= f.number_field :year, min: 1930, max: Date.today.year %>
+    <%= f.select :year, options_for_select(1913..Date.today.year, Date.today.year) %>
   </p>
 
   <p>

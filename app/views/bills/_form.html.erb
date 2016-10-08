@@ -7,24 +7,25 @@
     </ul>
   <% end %>
 
+  <div>Areas with asterisks are mandatory.</div>
   <p>
-  	<div>*Total Before Coverage </div>
-  	<%= f.number_field :total_without_coverage, step: :any %>
+  	<div>*Total Before Coverage</div>
+  	$<%= f.number_field :total_without_coverage, step: :any %>
   </p>
 
   <p>
-  	<div> Insurance Company </div>
+  	<div>Insurance Company</div>
     <%= f.collection_select :insurance_company, User::INSURANCE_COMPANIES, :to_s, :to_s, :selected => @entry.user.insurance_company %>
   </p>
 
   <p>
-  	<div> Policy Name </div>
-    <%= f.collection_select :policy_name, User::INSURANCE_COMPANIES, :to_s, :to_s, :selected => @entry.user.policy_name %>
+  	<div>Policy Name</div>
+    <%= f.text_field :policy_name %>
   </p>
 
   <p>
   	<div>*Final Cost</div>
-  	<%= f.number_field :final_cost, step: :any %>
+  	$<%= f.number_field :final_cost, step: :any %>
   </p>
 
   <p>

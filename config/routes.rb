@@ -1,18 +1,24 @@
 Rails.application.routes.draw do
+  root 'search#index'
 
-root 'search#index'
+  get '/login', to: "sessions#new"
+  
+  post '/login', to: "sessions#create"
 
-resources :users, except: [:index]
+  delete '/logout', to: "sessions#destroy"
 
-resources :entries, except: [:show]
+  resources :users, except: [:index]
 
-resources :entries, only: [:show] do
-  resources :bills, except: [:index]
+  resources :entries, except: [:show]
 
-resources :bills, only: [:show] do
-  resources :items, except: [:index, :show]
-end
+  resources :entries, only: [:show] do
+    resources :bills, except: [:index]
+  end
 
-resources :searches, :only => [:show, :index]
+  resources :bills, only: [:show] do
+    resources :items, except: [:index, :show]
+  end
+
+  resources :searches, :only => [:show, :index]
 
 end

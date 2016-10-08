@@ -21,6 +21,8 @@ gem 'pry'
 
 gem 'faker'
 
+gem 'd3-rails', '~> 3.5', '>= 3.5.5'
+
 gem 'font-awesome-rails'
 
 # Use jquery as the JavaScript library

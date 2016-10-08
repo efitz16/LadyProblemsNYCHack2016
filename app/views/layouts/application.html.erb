@@ -8,10 +8,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-  	<div class="form-group" id="search-form">
-      <%= render 'searches/search' %>
-    </div> 
+  <body> 
     <nav>
       <% if logged_in? %>
         <%=link_to "logout", logout_path, method:"delete"%>

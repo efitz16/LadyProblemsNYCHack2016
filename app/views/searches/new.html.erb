@@ -2,3 +2,7 @@
   <%= link_to "#{result.procedure_name}", entry_path(result) %><br>
 <% end %>
 <%= will_paginate @results %>
+
+<div id="customizer-bar">
+<%= render 'customizer' %>
+</div>

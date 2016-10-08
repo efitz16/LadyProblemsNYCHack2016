@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row user-info">
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-12">
       <%if @user == current_user%>
         <div class="col-sm-12 buttons">
           <button class="btn btn-md profile-btns"><%=link_to 'Add Entry', new_entry_path%></button>
@@ -14,8 +14,9 @@
         <%if @user.medical_professional%>
           <div><%=image_tag("Caduceus.png", size: "50")%></div>
         <%end%>
-        <h3><span class="text-bold"><%=@user.username%></span>, <%=@age%></h3>
+        <h1><span class="text-bold">Hi, <%=@user.username%></span>.</h1>
         <div id="bio"><em><%=@user.bio%></em></div>
+        <div><span class="text-bold">Age:</span><%=@age%></div>
         <div><span class="text-bold">Location:</span> <%=@user.city%>, <%=@user.state%></div>
         <div><span class="text-bold">Ethnicity/Race:</span> <%=@user.race%></div>
         <div><span class="text-bold">Insurance Company:</span> <%=@user.insurance_company%></div>
@@ -23,12 +24,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4 text-center entries">
-      <h3 class="text-bold">Entries</h3>
+    <div class="col-sm-6 col-sm-offset-3 text-center entries">
+      <h2 class="text-bold">Your Entries</h2>
         <%@user.entries.each do |e|%>
           <div class="col-sm-12 entry">
-            <div><%=e.year %></div>
-            <div><%=e.procedure_name%></div>
+            <h3 class="text-bold"><%=e.procedure_name%>, <%=e.year %></h3>
             <div class="entry-btns">
               <%=link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, e%>
               <%if @user == current_user%>

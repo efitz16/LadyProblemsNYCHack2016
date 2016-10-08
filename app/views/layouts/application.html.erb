@@ -9,6 +9,15 @@
   </head>
 
   <body>
+    <nav>
+      <% if logged_in? %>
+        <%=link_to "logout", logout_path, method:"delete"%>
+      <% else %>
+        <%=link_to "register", new_user_path%>
+        <%=link_to "login", login_path%>
+      <% end %>
+    </nav>
+
     <%= yield %>
   </body>
 </html>

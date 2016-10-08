@@ -3,22 +3,38 @@
   <head>
     <title>LadyProblemsNYCHack2016</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
-  <body> 
-    <nav>
-      <% if logged_in? %>
-        <%=link_to "logout", logout_path, method:"delete"%>
-      <% else %>
-        <%=link_to "register", new_user_path%>
-        <%=link_to "login", login_path%>
-      <% end %>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><i class="fa fa-venus" aria-hidden="true"></i> lady pro tips</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right"">
+          <% if logged_in? %>
+            <li><%=link_to "<span class='glyphicon glyphicon-user'></span>".html_safe, user_path(current_user)%></li>
+            <li><%=link_to "logout", logout_path, method:"delete"%></li>
+          <% else %>
+            <li><%=link_to "register", new_user_path%></li>
+            <li><%=link_to "login", login_path%></li>
+          <% end %>
+        </ul>
+      </div>
     </nav>
-    <%= yield %>
+    <div id="body-container">
+      <%= yield %>
+    </div>
   </body>
 </html>

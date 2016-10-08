@@ -3,8 +3,12 @@
 <h3>in <%= @entry.year %></h3>
 
 <div id="location">
+	<% if @entry.city != "" && @entry.state != ""%>
 	Location: <%= @entry.city %>, <%= @entry.state %><br>
-	Facility name: <%= @entry.facility_name if @entry.facility_name %>
+	<% end %>
+	<% if @entry.facility_name != nil%>
+		Facility name: <%= @entry.facility_name  %>
+	<% end %>
 </div>
 
 <% if @entry.details %>
@@ -14,27 +18,27 @@
 <% end %><br>
 
 <div id="bills">
-  See bill(s) breakdown:
   <% if @entry.bills %>
+	Invoice History:
   	<% count = 1 %>
     <% @entry.bills.each do |bill| %>
-      <%= link_to "Bill #{count}", entry_bill_path(bill) %>
+      <%= link_to "Bill #{count}", entry_bill_path(@entry, bill) %>
       <% count += 1 %>
     <% end %>
   <% end %>
-  <%= @creator ? (link_to "Add bill(s)", new_entry_bill_path(@entry)) : "" %>
+  <%= @creator ? (link_to "Add Bill", new_entry_bill_path(@entry)) : "" %>
 </div><br>
 
 <footer>
   <% if @entry.created_at.strftime("%m-%d-%Y") != @entry.updated_at.strftime("%m-%d-%Y") %>
-	Entry last edited at: <%= @entry.updated_at.strftime("%m-%d-%Y") %>
+	Last Edited: <%= @entry.updated_at.strftime("%m-%d-%Y") %>
   <% else %>
-    Entry created at: <%= @entry.created_at.strftime("%m-%d-%Y") %><br>
+    Created: <%= @entry.created_at.strftime("%m-%d-%Y") %><br>
   <% end %>
   <% if @creator %>
   	<%= link_to 'Edit', edit_entry_path(@entry) %>
-  	<%= link_to 'Delete this entry', entry_path(@entry), 
-  	  method: :delete, 
+  	<%= link_to 'Delete this entry', entry_path(@entry),
+  	  method: :delete,
   	  data: {confirm: "Are you sure you want to delete this entry?" } %>
   <% end %>
 </footer>

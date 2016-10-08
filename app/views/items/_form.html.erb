@@ -6,9 +6,9 @@
       <% end %>
     </ul>
   <% end %>
-
+<div>Areas with asterisks are mandatory.</div>
   <p>
-  	<%= f.label :item_name %>
+   <div>*Item Name </div>
   	<%= f.text_field :item_name %>
   </p>
 
@@ -23,7 +23,7 @@
   </p>
 
   <p>
-    <%= f.submit "Add items to bill" %>
+    <%= f.submit "Submit Item" %>
   </p>
 
 <% end %>

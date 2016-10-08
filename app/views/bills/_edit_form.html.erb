@@ -7,40 +7,41 @@
     </ul>
   <% end %>
 
+
   <p>
     <div>*Procedure Name</div>
-  	<%= f.text_field :procedure_name %>
+  	<%= f.text_field :procedure_name, :value => @entry.procedure_name %>
   </p>
 
   <p>
   	<div>*Year of Procedure</div>
-  	<%= f.number_field :year, min: 1930, max: Date.today.year %>
+  	<%= f.number_field :year, min: 1930, max: Date.today.year, :value => @entry.year %>
   </p>
 
   <p>
   	<div>Facility Name</div>
-  	<%= f.text_field :facility_name %>
+  	<%= f.text_field :facility_name, :value => @entry.facility_name  %>
   </p>
 
   <div>
   <span>
   	<%= f.label :city %>
-  	<%= f.text_field :city, :value => @user_city %>
+  	<%= f.text_field :city, :value => @entry.city %>
   </span>
 
   <span>
   	<%= f.label :state %>
-  	<%= f.collection_select :state, Entry::STATES, :to_s, :to_s, :selected => current_user.state %>
+  	<%= f.collection_select :state, Entry::STATES, :to_s, :to_s, :selected => @entry.state %>
   </span>
   </div>
 
   <p>
   	<%= f.label :details %><br>
-  	<%= f.text_area :details, cols: 50, rows: 5 %>
+  	<%= f.text_area :details, cols: 50, rows: 5, :value => @entry.details  %>
   </p>
 
   <p>
-    <%= f.submit "Create Entry" %>
+    <%= f.submit "Update Bill" %>
   </p>
 
 <% end %>

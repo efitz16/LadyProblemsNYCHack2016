@@ -1,3 +1,17 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+root 'search#index'
+
+resources :users, except: [:index]
+
+resources :entries, except: [:show]
+
+resources :entries, only: [:show] do
+  resources :bills, except: [:index]
+end
+
+resources :bills, only: [:show] do
+  resources :items, except: [:index, :show]
+end
+
 end

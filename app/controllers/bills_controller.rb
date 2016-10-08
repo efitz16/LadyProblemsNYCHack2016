@@ -45,8 +45,6 @@ class BillsController < ApplicationController
       @creator = current_user?(@user)
       @items = @bill.items
     end
-
-    binding.pry
   end
 
   private

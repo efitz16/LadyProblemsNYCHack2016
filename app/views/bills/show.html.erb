@@ -2,20 +2,31 @@
 <p id="insurance-company"> Insurance Company: <%= @bill.insurance_company %> </p>
 <p id="policy-name"> Policy: <%= @bill.policy_name %> </p>
 <p id="final-cost"> Final cost: <%= sprintf "%.2f", @bill.final_cost %> </p>
-<br>
-<% if @items %>
-  <% @items.each do |item| %>
-    <%= item.item_name %>
-    <%= item.price %>
-    <%= item.quantity %>
-    <% if @creator %>
-      <%= link_to 'Edit', edit_item_path(item) %>
-      <%= link_to 'Delete this item', item_path(item), 
-      method: :delete, 
-      data: {confirm: "Are you sure you want to delete this item?" } %>
+
+<div id="bill-items">
+  <p> Items: </p>
+  <% if @items %>
+  <% count = 1 %>
+    <% @items.each do |item| %>
+      <div class="item" id="item-#{count}">
+      Name: <%= item.item_name %><br>
+      Price: <%= sprintf "%.2f", item.price %><br>
+      Quantity: <%= item.quantity ? item.quantity : 0 %><br>
+      <% if @creator %>
+        <%= link_to 'Edit', edit_item_path(item) %>
+        <%= link_to 'Delete this item', item_path(item), 
+        method: :delete, 
+        data: {confirm: "Are you sure you want to delete this item?" } %>
+      <% end %>
+      <% count += 1 %>
+      <br>
+      </div>
     <% end %>
+  <% else %>
+    This user hasn't added any items.
   <% end %>
-<% end %>
+</div>
+
 <footer>
   <% if @bill.created_at.strftime("%m-%d-%Y") != @bill.updated_at.strftime("%m-%d-%Y") %>
 	Bill last edited at: <%= @bill.updated_at.strftime("%m-%d-%Y") %>

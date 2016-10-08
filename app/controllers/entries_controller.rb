@@ -57,4 +57,6 @@ class EntriesController < ApplicationController
     end
   end
 
+	def show
+	end
 end

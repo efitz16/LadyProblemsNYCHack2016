@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :log_in, :redirect, except: [:show]
-  before_action :current_bill, except: [:new, :create]
+  before_action :log_in, except: [:show]
   before_action :current_item, only: [:show, :edit, :update, :destroy]
-  before_action :bill_creating_item, only: [:new, :create]
+  before_action :not_nested_bill, only: [:new, :create]
+  before_action :current_bill, except: [:new, :create]
+  before_action :redirect, except: [:show]
 
   def new
     @item = @bill.items.new
@@ -18,6 +19,9 @@ class ItemsController < ApplicationController
       # redirect_back(fallback_location: fallback_location)
       flash.now[:notice]="Sorry! Something went wrong. Please check that you've filled out all required information."
     end
+  end
+
+  def edit
   end
 
   def update
@@ -43,11 +47,11 @@ class ItemsController < ApplicationController
   end
 
   def current_bill
-    @bill = Bill.find(params[:bill_id])
+    @bill = @item.bill
   end
 
-  def bill_creating_item
-    @bill = Bill.find(params[:id])
+  def not_nested_bill
+    @bill = Bill.find_by(id: params[:bill_id])
   end
 
   def current_item
@@ -56,14 +60,14 @@ class ItemsController < ApplicationController
 
   def log_in
     if !current_user
-      redirect_to new_user_session_path,
+      redirect_to root_path
       flash.now[:notice]="Please login to access this feature."
     end
   end
 
   def redirect
-    unless current_user == @bill.user
-      redirect_to new_user_session_path,
+    unless current_user == @bill.entry.user
+      redirect_to root_path
       flash.now[:notice]="You cannot create or edit an item for another user."
     end
   end

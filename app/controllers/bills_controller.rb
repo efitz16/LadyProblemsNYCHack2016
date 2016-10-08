@@ -1,9 +1,9 @@
 class BillsController < ApplicationController
   before_action :log_in, except: [:show]
+  before_action :current_bill, only: [:show, :edit, :update, :destroy]
+  before_action :not_nested_entry, only: [:new, :create]
   before_action :current_entry, except: [:new, :create]
   before_action :redirect, except: [:show]
-  before_action :current_bill, only: [:show, :edit, :update, :destroy]
-  before_action :entry_creating_bill, only: [:new, :create]
 
   def new
     @bill = @entry.bills.new
@@ -37,15 +37,8 @@ class BillsController < ApplicationController
   end
 
   def show
-    @bill = current_bill
-
-    if @bill == nil
-      redirect_to entry_path(current_entry)
-    else
-      @user = current_entry.user
-      @creator = current_user?(@user)
+      @creator = @entry.user
       @items = @bill.items
-    end
   end
 
   private
@@ -54,16 +47,16 @@ class BillsController < ApplicationController
     params.require(:bill).permit(:total_without_coverage, :insurance_company, :policy_name, :final_cost)
   end
 
-  def current_entry
-    @entry = Entry.find_by(id: params[:entry_id])
-  end
-
-  def entry_creating_bill
-    @entry = Entry.find(params[:id])
-  end
-
   def current_bill
     @bill = Bill.find_by(id: params[:id])
+  end
+
+  def current_entry
+    @entry = @bill.entry
+  end
+
+  def not_nested_entry
+    @entry = Entry.find_by(id: params[:entry_id])
   end
 
   def log_in

@@ -33,6 +33,18 @@ class EntriesController < ApplicationController
     redirect_to current_user
   end
 
+  def show
+    @entry = current_entry
+
+    if @entry == nil
+      redirect_to root_path
+    else
+      @user = @entry.user
+      @bills = @entry.bills
+      @creator = current_user?(@user)
+    end
+  end
+
   private
 
   def entry_params
@@ -40,7 +52,7 @@ class EntriesController < ApplicationController
   end
 
   def current_entry
-    @entry = Entry.find(params[:id])
+    @entry = Entry.find_by(id: params[:id])
   end
 
   def log_in
@@ -56,7 +68,4 @@ class EntriesController < ApplicationController
       alert: "You cannot create or edit an entry for another user."
     end
   end
-
-	def show
-	end
 end

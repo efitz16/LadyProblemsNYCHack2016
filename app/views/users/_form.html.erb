@@ -1,61 +1,16 @@
-<div>
-  <%= form_for(@user) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-
-    <div class='input-field'>
-      <%= f.label :username, "username: "%>
-      <%= f.text_field :username %>
-    </div>
-
-    <div class='input-field'>
-      <%= f.label :email, "email: "%>
-      <%= f.email_field :email %>
-     </div>
-
-    <div class='input-field'>
-      <%= f.label :password, "password: " %>
-      <%= f.password_field :password %>
-    </div>
-
-    <div class='input-field'>
-      <%= f.label :password_confirmation, "re-enter password:" %>
-      <%= f.password_field :password_confirmation %>
-    </div>
-
-    <div class='input-field'>
-      <%= f.label :city, "City: "%>
-      <%= f.text_field :city %>
-    </div>
-
-    <div class='input-field'>
-      <%= f.label :state, "State: "%>
-      <%= f.collection_select :state, User::STATES, :to_s, :to_s, {:prompt => 'Select'}%>
-    </div>
-
-    <div class='input-field'>
-      <%= f.label :insurance_company, "Insurance Company: "%>
-      <%= f.collection_select :insurance_company, User::INSURANCE_COMPANIES, :to_s, :to_s, {:prompt => 'Select'} %>
-    </div>
-
-    <div class='input-field'>
-      <%= f.label :policy_name, "Policy Name: "%>
-      <%= f.text_field :policy_name %>
-    </div>
-
-    <div class='input-field'>
-      <%= f.label :birthday, "Date of Birth: "%>
-      <%= f.date_select :birthday, start_year: 1915 %>
-    </div>
-    
-    <div class='input-field'>
-      <%= f.label :race, "Race/Ethnicity: "%>
-      <%= f.collection_select :race, User::RACE, :to_s, :to_s, {:prompt => 'Select'} %>
-    </div>
-    <div class='input-field'>
-      <%= f.label "I am a medical professional." %>
-      <%= f.check_box :medical_professional%> <br />
-    </div>
-
-    <%= f.submit yield(:button_text) %>
-  <% end %>
-</div>
+<%= bootstrap_form_for(@user, label_errors:true, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
+  <%= f.text_field :username %>
+  <%= f.email_field :email %>
+  <%= f.password_field :password %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.text_field :city %>
+  <%= f.collection_select :state, User::STATES, :to_s, :to_s, {:prompt => 'Select'} %>
+  <%= f.collection_select :insurance_company, User::INSURANCE_COMPANIES, :to_s, :to_s, {:prompt => 'Select'} %>
+  <%= f.text_field :policy_name %>
+  <%= f.date_select :birthday, start_year: 1915 %>
+  <%= f.collection_select :race, User::RACE, :to_s, :to_s, {:prompt => 'Select'}%>
+  <%= f.form_group do %>
+    <%= f.check_box :medical_professional, label: 'I am a medical professional.'%>
+    <%= f.submit yield(:button_text), :class =>"btn btn-primary center-block" %>
+  <%end%>
+<% end %>

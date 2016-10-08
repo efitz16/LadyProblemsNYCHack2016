@@ -1,4 +1,4 @@
-<%= bootstrap_form_tag url: '/searches/new' do  %>
-  <%= text_field_tag(:search) %>
-  <%= submit_tag("Search") %>
+<%=form_tag url: '/searches/new', class:"col-sm-10" do  %>
+  <%= text_field_tag :search, "", class:'col-sm-10'%>
+  <%= submit_tag :Search, class:'col-sm-2'%>
 <% end %>

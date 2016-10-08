@@ -27,13 +27,13 @@ ActiveRecord::Schema.define(version: 20161007183634) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.string   "procedure_name"
+    t.string   "procedure_name", null: false
     t.integer  "user_id"
     t.string   "city"
     t.string   "state"
     t.text     "details"
     t.string   "facility_name"
-    t.integer  "year"
+    t.integer  "year",           null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["user_id"], name: "index_entries_on_user_id", using: :btree
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20161007183634) do
 
   create_table "items", force: :cascade do |t|
     t.integer  "bill_id"
-    t.string   "item_name"
+    t.string   "item_name",  null: false
     t.decimal  "price"
     t.integer  "quantity"
     t.datetime "created_at", null: false
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 20161007183634) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "password_digest"
+    t.string   "username",             null: false
+    t.string   "email",                null: false
+    t.string   "password_digest",      null: false
     t.string   "city"
     t.string   "state"
     t.string   "insurance_company"

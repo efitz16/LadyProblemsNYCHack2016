@@ -8,27 +8,27 @@
   <% end %>
 
   <p>
-  	<%= f.label :total_without_coverage %>
+  	<div> Total Before Coverage </div>
   	<%= f.number_field :total_without_coverage, step: :any %>
   </p>
 
   <p>
-  	<%= f.label :insurance_company %>
+  	<div> Insurance Company </div>
   	<%= f.text_field :insurance_company, :value => @user_insurance_co %>
   </p>
 
   <p>
-  	<%= f.label :policy_name %>
+  	<div> Policy Name </div>
   	<%= f.text_field :policy_name, :value => @user_policy_name %>
   </p>
 
   <p>
-  	<%= f.label :final_cost %>
+  	<div>Final Cost</div>
   	<%= f.number_field :final_cost, step: :any %>
   </p>
 
   <p>
-    <%= f.submit "Add items to bill" %>
+    <%= f.submit "Create Bill" %>
   </p>
 
 <% end %>

@@ -1,6 +1,7 @@
 class BillsController < ApplicationController
-  before_action :log_in, :redirect, except: [:show]
+  before_action :log_in, except: [:show]
   before_action :current_entry, except: [:new, :create]
+  before_action :redirect, except: [:show]
   before_action :current_bill, only: [:show, :edit, :update, :destroy]
   before_action :entry_creating_bill, only: [:new, :create]
 
@@ -74,7 +75,7 @@ class BillsController < ApplicationController
 
   def redirect
     unless current_user == @entry.user
-      redirect_to new_user_session_path,
+      redirect_to root_path
       flash.now[:notice]="You cannot create or edit a bill for another user."
     end
   end

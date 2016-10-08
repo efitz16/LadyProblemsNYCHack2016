@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @entries = @user.entries
-    @age = Date.today.year - @user.birthday.year
+    @age = @user.age
   end
 
   def destroy

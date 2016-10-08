@@ -22,13 +22,14 @@
       <% count += 1 %>
     <% end %>
   <% end %>
+  <%= @creator ? (link_to "Add bill(s)", new_entry_bill_path(@entry)) : "" %>
 </div><br>
 
 <footer>
   <% if @entry.created_at.strftime("%m-%d-%Y") != @entry.updated_at.strftime("%m-%d-%Y") %>
-	Bill last edited at: <%= @entry.updated_at.strftime("%m-%d-%Y") %>
+	Entry last edited at: <%= @entry.updated_at.strftime("%m-%d-%Y") %>
   <% else %>
-    Bill created at: <%= @entry.created_at.strftime("%m-%d-%Y") %><br>
+    Entry created at: <%= @entry.created_at.strftime("%m-%d-%Y") %><br>
   <% end %>
   <% if @creator %>
   	<%= link_to 'Edit', edit_entry_path(@entry) %>

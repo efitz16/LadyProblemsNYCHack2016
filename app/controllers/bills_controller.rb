@@ -35,6 +35,18 @@ class BillsController < ApplicationController
     flash.now[:notice]="Bill deleted."
   end
 
+  def show
+    @bill = current_bill
+
+    if @bill == nil
+      redirect_to entry_path(current_entry)
+    else
+      @user = current_entry.user
+      @creator = current_user?(@user)
+      @items = @bill.items
+    end
+  end
+
   private
 
   def bill_params
@@ -42,7 +54,7 @@ class BillsController < ApplicationController
   end
 
   def current_entry
-    @entry = Entry.find(params[:entry_id])
+    @entry = Entry.find_by(id: params[:entry_id])
   end
 
   def entry_creating_bill
@@ -50,7 +62,7 @@ class BillsController < ApplicationController
   end
 
   def current_bill
-    @bill = Bill.find(params[:id])
+    @bill = Bill.find_by(id: params[:id])
   end
 
   def log_in

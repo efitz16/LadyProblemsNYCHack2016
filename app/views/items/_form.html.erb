@@ -1,0 +1,29 @@
+<%= form_for [@bill, @item] do |f| %>
+  <% if @item.errors.any? %>
+    <ul>
+      <% @item.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p>
+  	<%= f.label :item_name %>
+  	<%= f.text_field :item_name %>
+  </p>
+
+  <p>
+    <%= f.label :price %>
+    <%= f.number_field :price, step: :any %>
+  </p>
+
+  <p>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity %>
+  </p>
+
+  <p>
+    <%= f.submit "Add items to bill" %>
+  </p>
+
+<% end %>

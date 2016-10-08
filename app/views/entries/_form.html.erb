@@ -1,0 +1,46 @@
+<%= form_for @entry do |f| %>
+  <% if @entry.errors.any? %>
+    <ul>
+      <% @entry.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p>
+    <%= f.label :procedure_name %>
+  	<%= f.text_field :procedure_name %>
+  </p>
+
+  <p>
+  	<%= f.label :city %>
+  	<%= f.text_field :city, :value => @user_city %>
+  </p>
+
+  <p>
+  	<%= f.label :state %>
+  	<%= f.collection_select :state, Entry::STATES :value => @user_state %>
+  </p>
+
+  <p>
+  	<%= f.label :details %>
+  	<%= f.text_area :details, cols: 50, rows: 5 %>
+  </p>
+
+  <p>
+  	<%= f.label :facility_name %>
+  	<%= f.text_field :facility_name %>
+  </p>
+
+  <p>
+  	<%= f.label :year %>
+  	<%= f.number_field :year, min: 0 %>
+  </p>
+
+  <p>
+    <%= f.submit "Add a bill" %>
+  </p>
+
+<% end %>
+
+<!-- need to pass in user's city and state -->

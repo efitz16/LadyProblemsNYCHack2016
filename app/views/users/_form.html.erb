@@ -11,6 +11,6 @@
   <%= f.collection_select :race, User::RACE, :to_s, :to_s, {:prompt => 'Select'}%>
   <%= f.form_group do %>
     <%= f.check_box :medical_professional, label: 'I am a medical professional.'%>
-    <%= f.submit yield(:button_text), :class =>"btn btn-primary col-sm-3" %>
+    <%= f.submit yield(:button_text), :class =>"login-register-btn btn btn-primary col-sm-3" %>
   <%end%>
 <% end %>

@@ -4,11 +4,6 @@ class SearchesController < ApplicationController
 
 	def new
 		@results = Entry.search(params["search"])
+		@results = @results.paginate(:page => params[:page], :per_page => 6)
 	end
 end
-
- 
-# put this in view where want to search
-  	# <div class="form-group" id="search-form">
-   #    <%= render 'searches/search' %>
-   #  </div>

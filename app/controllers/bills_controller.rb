@@ -11,23 +11,28 @@ class BillsController < ApplicationController
   def create
     @bill = @entry.bills.new(bill_params)
     if @bill.save
-      redirect_to "/bills/#{@bill.id}"
-      #links to new bill
+      redirect_to @bill
+      flash.now[:notice]="Saved. Consider adding bill items to inform others of potential costs."
     else
-      # refresh
-      # alert: "Sorry! Something went wrong. Please check that you've filled out all required information."
+      render 'new'
+      flash.now[:notice]="Sorry! Something went wrong. Please check that you've filled out all required information."
     end
   end
 
   def update
     if @bill.update_attributes(bill_params)
-      redirect_to @entry
+      redirect_to @bill
+      flash.now[:notice]="Bill updated."
+    else
+      render 'edit'
+      flash.now[:notice]="Sorry! Something went wrong. Please check that you've filled out all required information."
     end
   end
 
   def destroy
     @bill.destroy
     redirect_to @entry
+    flash.now[:notice]="Bill deleted."
   end
 
   private
@@ -51,14 +56,14 @@ class BillsController < ApplicationController
   def log_in
     if !current_user
       redirect_to new_user_session_path,
-      alert: "Please login to access this feature."
+      flash.now[:notice]="Please login to access this feature."
     end
   end
 
   def redirect
     unless current_user == @entry.user
       redirect_to new_user_session_path,
-      alert: "You cannot create or edit a bill for another user."
+      flash.now[:notice]="You cannot create or edit a bill for another user."
     end
   end
 

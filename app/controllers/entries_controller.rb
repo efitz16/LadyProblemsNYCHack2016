@@ -14,23 +14,28 @@ class EntriesController < ApplicationController
   def create
     @entry = current_user.entries.new(entry_params)
     if @entry.save
-      redirect_to "/entries/#{@entry.id}"
-      #links to new bill
+      redirect_to @entry
+      flash.now[:notice]="Saved. Consider adding your cost information."
     else
-      # refresh
-      # alert: "Sorry! Something went wrong. Please check that you've filled out all required information."
+      render 'new'
+      flash.now[:notice]="Sorry! Something went wrong. Please check that you've filled out all required information."
     end
   end
 
   def update
     if @entry.update_attributes(entry_params)
       redirect_to current_user
+      flash.now[:notice]="Entry updated."
+    else
+      render 'edit'
+      flash.now[:notice]="Sorry! Something went wrong. Please check that you've filled out all required information."
     end
   end
 
   def destroy
     @entry.destroy
     redirect_to current_user
+    flash.now[:notice]="Entry deleted."
   end
 
   def show
@@ -58,14 +63,14 @@ class EntriesController < ApplicationController
   def log_in
     if !current_user
       redirect_to new_user_session_path,
-      alert: "Please login to access this feature."
+      flash.now[:notice]="Please login to access this feature."
     end
   end
 
   def redirect
     unless current_user == @entry.user
       redirect_to new_user_session_path,
-      alert: "You cannot create or edit an entry for another user."
+      flash.now[:notice]="You cannot create or edit an entry for another user."
     end
   end
 end

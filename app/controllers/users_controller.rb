@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :auth_user, only: [:edit, :update, :destroy, :show]
+  before_action :auth_user, only: [:edit, :update, :destroy]
 
   def new
     if logged_in?
@@ -36,6 +36,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @entries = @user.entries
+    @age = Date.today.year - @user.birthday.year
   end
 
   def destroy

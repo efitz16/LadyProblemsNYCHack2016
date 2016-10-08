@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
 
 root 'search#index'
 
@@ -15,8 +14,5 @@ resources :bills, only: [:show] do
 end
 
 resources :searches, :only => [:show, :index]
-=======
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :searches, :only => [:show, :index]
->>>>>>> created bill and item forms
+
 end

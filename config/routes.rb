@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'search#index'
+  root 'searches#index'
 
   get '/login', to: "sessions#new"
   

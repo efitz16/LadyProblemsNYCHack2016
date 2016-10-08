@@ -25,6 +25,7 @@
   <% else %>
     This user hasn't added any items.
   <% end %>
+  <%= @creator ? (link_to "Add item to bill", new_bill_item_path(@bill)) : "" %>
 </div>
 
 <footer>

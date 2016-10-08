@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'search#index'
+  root 'searches#index'
 
   get '/login', to: "sessions#new"
   
@@ -19,6 +19,6 @@ Rails.application.routes.draw do
     resources :items, except: [:index, :show]
   end
 
-  resources :searches, :only => [:show, :index]
+  resources :searches, :only => [:show, :index, :new]
 
 end

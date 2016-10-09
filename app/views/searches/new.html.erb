@@ -1,12 +1,29 @@
-<% @results.each do |result| %>
-  <%= link_to "#{result.procedure_name}", entry_path(result) %><br>
-<% end %>
-<%= will_paginate @results %>
+<div class="container">
+  <div class="row">
+    <h1 class="text-center"> Search Results</h1>
+      <br>
+      <div class="col-sm-12">
+        <div class="col-sm-8 col-sm-offset-2">
+          <%if @min_max %>
+            <div id="customizer-bar">
+              <%= render 'customizer' %>
+            </div>
+          <%else%>
+            <%= link_to "Go back to search", new_search_path(:search => params[:query]) %>
+          <%end%>
+        </div>
+        <br>
+        <div class="results col-sm-8 col-sm-offset-2">
+          <% @results.each do |result| %>
+            <div class="single-result">
+              <h4><%= link_to "#{result.procedure_name}", entry_path(result) %></h4>
+              <div><%=result.year%></div>
+              <div>Total Cost: $<%=number_with_precision(result.total_cost, precision: 2)%></div>
+            </div>
+          <% end %>
+          <%= will_paginate @results %>
+        </div>
+      </div>
 
-<% if @min_max %>
-  <div id="customizer-bar">
-  	<%= render 'customizer' %>
   </div>
-<% else %>
-	<%= link_to "Go back to search", new_search_path(:search => params[:query]) %>
-<% end %>
+</div>

@@ -1,4 +1,4 @@
-<%= form_for @entry do |f| %>
+<%= bootstrap_form_for @entry do |f| %>
   <% if @entry.errors.any? %>
     <ul>
       <% @entry.errors.full_messages.each do |error| %>
@@ -7,36 +7,11 @@
     </ul>
   <% end %>
 
-  <div>Areas with asterisks are mandatory.</div>
-    <p>
-    <div>*Procedure Name</div>
-  	<%= f.text_field :procedure_name %>
-  </p>
-
-  <p>
-  	<div>*Year of Procedure</div>
-    <%= f.select :year, options_for_select(1913..Date.today.year, Date.today.year) %>
-  </p>
-  <div>
-  <span>
-  	<%= f.label :city %>
-  	<%= f.text_field :city, :value => @user_city %>
-  </span>
-
-  <span>
-  	<%= f.label :state %>
-  	<%= f.collection_select :state, Entry::STATES, :to_s, :to_s, :selected => current_user.state %>
-  </span>
-  </div>
-
-  <p>
-  	<%= f.label :details %><br>
-    Detail Ideas: What advice would you give about procedure preparation or after care? If you could advise someone to ask their doctor one question about this procedure, what would it be?<br>
-  	<%= f.text_area :details, cols: 50, rows: 5 %>
-  </p>
-
-  <p>
-    <%= f.submit "Create Entry" %>
-  </p>
-
+  <div>Areas with asterisks are mandatory.</div><br>
+  <%= f.text_field :procedure_name, label: '*Procedure Name'%>
+  <%= f.select :year, options_for_select(1913..Date.today.year, Date.today.year), label: '*Year of Procedure'%>
+	<%= f.text_field :city, :value => @user_city %>
+	<%= f.collection_select :state, Entry::STATES, :to_s, :to_s, :selected => current_user.state %>
+	<%= f.text_area :details, cols: 50, rows: 5, placeholder:"Detail Ideas: What advice would you give about procedure preparation or after care? If you could advise someone to ask their doctor one question about this procedure, what would it be?" %>
+  <%= f.submit "Create Entry" %>
 <% end %>

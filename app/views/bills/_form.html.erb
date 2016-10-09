@@ -1,4 +1,4 @@
-<%= form_for [@entry, @bill] do |f| %>
+<%= bootstrap_form_for [@entry, @bill] do |f| %>
   <% if @bill.errors.any? %>
     <ul>
       <% @bill.errors.full_messages.each do |error| %>
@@ -9,23 +9,17 @@
 
   <div>Areas with asterisks are mandatory.</div>
   <p>
-  	<div>*Total Before Coverage</div>
-  	$<%= f.number_field :total_without_coverage, step: :any %>
+  	<%= f.number_field :total_without_coverage, step: :any, label: '*Total Before Coverage (USD)'%>
   </p>
-
   <p>
-  	<div>Insurance Company</div>
     <%= f.collection_select :insurance_company, User::INSURANCE_COMPANIES, :to_s, :to_s, :selected => @entry.user.insurance_company %>
   </p>
-
   <p>
-  	<div>Policy Name</div>
     <%= f.text_field :policy_name %>
   </p>
 
   <p>
-  	<div>*Final Cost</div>
-  	$<%= f.number_field :final_cost, step: :any %>
+  	<%= f.number_field :final_cost, step: :any, label:"*Final Cost (USD)" %>
   </p>
 
   <p>

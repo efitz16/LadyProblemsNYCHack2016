@@ -6,20 +6,19 @@
       <% end %>
     </ul>
   <% end %>
-<div>Areas with asterisks are mandatory.</div>
+
+  <div>You don't have to follow the item description to the letter! Write it in a way that others can understand - no need for medical-babble!</div>
+  <div>Areas with asterisks are mandatory.</div>
+  
   <p>
-   <div>*Item Name </div>
-   You don't have to follow the item description to the letter! Write it in a way that others can understand - no need for medical-babble!<br>
-  	<%= f.text_field :item_name %>
+  	<%= f.text_field :item_name, label:"*Item Name" %>
   </p>
 
   <p>
-    <%= f.label :price %>
-    $<%= f.number_field :price, step: :any %>
+    <%= f.number_field :price, step: :any, label:"Price (USD)"%>
   </p>
 
   <p>
-    <%= f.label :quantity %>
     <%= f.number_field :quantity %>
   </p>
 

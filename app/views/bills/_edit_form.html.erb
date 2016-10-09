@@ -1,4 +1,4 @@
-<%= form_for [@entry, @bill] do |f| %>
+<%= bootstrap_form_for [@entry, @bill] do |f| %>
   <% if @bill.errors.any? %>
     <ul>
       <% @bill.errors.full_messages.each do |error| %>

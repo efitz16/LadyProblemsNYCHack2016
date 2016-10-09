@@ -1,29 +1,43 @@
-<div>
-<% if @user.medical_professional %>
-  <span><%=image_tag("Caduceus.png", size: "50")%></span>
-<%end%>
+<div class="container">
 
-  <span class='username'><%=@user.username%></span><span>, <%=@age%></span>
-</div>
-  <div> <%=@user.city%>, <%=@user.state%></div>
-  <div><%=@user.race%></div>
-  <div><%=@user.insurance_company%></div>
-<br>
-  <div><%=@user.bio%></div>
-<br>
-  <% @user.entries.each do |e|%>
-    <div>
-      <%=e.year %> <%=e.procedure_name%><br>
-      <%=link_to 'View Details', e%>
-      <% if @user == current_user%>
-      <br><%=link_to 'Edit', "/entries/#{e.id}/edit"%><br>
-      <%=form_for(e, :html => { :method => :delete }) do |f|%>
-             <%= f.submit "Delete" %>
+  <div class="row user-info">
+    <div class="col-sm-12">
+      <%if @user == current_user%>
+        <div class="col-sm-12 buttons">
+          <button class="btn btn-md profile-btns"><%=link_to 'Add Entry', new_entry_path%></button>
+          <button class="btn btn-md profile-btns"><%=link_to 'Edit Profile', edit_user_path%></button>
+          <button class="btn btn-md profile-btns"><%=link_to 'New Search', root_url%></button>
+        </div>
       <%end%>
-      <%end%>
+
+      <div class="col-sm-12 text-center">
+        <%if @user.medical_professional%>
+          <div><%=image_tag("Caduceus.png", size: "50")%></div>
+        <%end%>
+        <h1><span class="text-bold">Hi, <%=@user.username%></span>.</h1>
+        <div id="bio"><em><%=@user.bio%></em></div>
+        <div><span class="text-bold">Age:</span><%=@age%></div>
+        <div><span class="text-bold">Location:</span> <%=@user.city%>, <%=@user.state%></div>
+        <div><span class="text-bold">Ethnicity/Race:</span> <%=@user.race%></div>
+        <div><span class="text-bold">Insurance Company:</span> <%=@user.insurance_company%></div>
+      </div>
     </div>
-  <%end%>
-
-  <% if @user == current_user %>
-    <br><div><%=link_to 'Create Entry', new_entry_path%></div><br>
-  <%end%>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3 text-center entries">
+      <h2 class="text-bold">Your Entries</h2>
+        <%@user.entries.each do |e|%>
+          <div class="col-sm-12 entry">
+            <h3 class="text-bold"><%=e.procedure_name%>, <%=e.year %></h3>
+            <div class="entry-btns">
+              <%=link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, e%>
+              <%if @user == current_user%>
+                <%=link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, "/entries/#{e.id}/edit"%>
+                <%=link_to "<i class='fa fa-trash-o' aria-hidden='true'></i>".html_safe, e, method: :delete, data: { confirm: "Are you sure you want to delete this?" }%>
+              <%end%>
+            </div>
+          </div>
+        <%end%>
+    </div>
+  </div>
+</div>

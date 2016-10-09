@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right"">
           <% if logged_in? %>
-            <li><%=link_to "<span class='glyphicon glyphicon-user'></span>".html_safe, user_path(current_user)%></li>
+            <li><%=link_to current_user.username, user_path(current_user)%></li>
             <li><%=link_to "logout", logout_path, method:"delete"%></li>
           <% else %>
             <li><%=link_to "register", new_user_path%></li>

@@ -5,12 +5,12 @@ Entry.delete_all
 User.delete_all
 
 4.times do
-  User.create!({ username: Faker::Superhero.name,
+  User.create!({ username: Faker::Superhero.power,
                 bio: Faker::Lorem.sentence,
                 city: Faker::Address.city,
                 state: Faker::Address.state,
                 email: Faker::Internet.email,
-                password: Faker::Internet.password(8),
+                password: "password123",
                 insurance_company: ["Lady Problems Insurance","Hackathon Insurance"].sample,
                 policy_name: ["Family Plan B-12", "Individual Platinum"].sample,
                 medical_professional: [true, false].sample,

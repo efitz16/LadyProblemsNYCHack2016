@@ -1,9 +1,10 @@
-@mixin links{
+@mixin links($before, $after){
   a{
-    color: black;
     text-decoration:none;
+    color: $before;
+
     &:hover{
-      color:#57B8DC;
+      color:$after;
     }
   }
 }

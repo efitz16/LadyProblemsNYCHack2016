@@ -1,14 +1,55 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "partials/base";
+
 #loginform, #registerform, .btn{
   margin-top: 2%;
 }
 
-.btn{
+.login-register-btn{
   float:right;
 }
 
 .registerlink{
   padding-top: 2%;
+}
+
+#bio{
+  padding: 20px 0;
+}
+
+.entries{
+  margin-top: 20px;
+
+  .entry{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color:rgb(237, 208, 208);
+
+    .entry-btns{
+      @include links(white, orange);
+      font-size: 30px;
+      text-align: center;
+    }
+    .fa-eye, .fa-pencil, .fa-trash-o{
+      margin: 5px;
+      background-color: black;
+      padding: 10px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.buttons{
+  margin: 20px;
+
+  .profile-btns{
+    @include links(black, white);
+    float:right;
+    margin: 5px;
+  }
+}
+
+.delete-btn{
+  padding-bottom: 20px;
 }

@@ -26,34 +26,40 @@ class SearchesController < ApplicationController
 
 	@new_results = []
 
-	# binding.pry
-
-	if params[:insurance]
-	  @results.each do |result|
-	  	if !(result.bills.where(insurance_company: current_user.insurance_company).empty?)
-	  		@new_results << result
-	  	end
-	  	@new_results = @new_results.flatten
-	  end
-	end
+	@new_results = @results.select { |result| result.total_cost.between?(params["min-val"].to_f, (params["max-val"].to_f + 1)) }
 
 	if params[:distance]
       if !@new_results.empty?
         @results1 = @new_results
-        @new_results = @new_results.select { |result| result.city = current_user.city }
-        @new_results << @results1.select { |result| result.state = current_user.state && !(@new_results.include?(result)) }
+        @new_results = @new_results.select { |result| result.city == current_user.city }
+        @new_results << @results1.select { |result| result.state == current_user.state && !(@new_results.include?(result)) }
 	  else
-		@new_results = @results.select { |result| result.city = current_user.city }
-		@new_results << @results.select { |result| result.state = current_user.state && !(@new_results.include?(result)) }
+		@new_results = @results.select { |result| result.city == current_user.city }
+		@new_results << @results.select { |result| result.state == current_user.state && !(@new_results.include?(result)) }
 	  end
 
 	  @new_results = @new_results.flatten
 	end
 
-	if !@new_results.empty?
-      @new_results = @new_results.select { |result| result.total_cost.between?(params["min-val"].to_f, (params["max-val"].to_f + 1)) }
-	else
-	  @new_results = @results.select { |result| result.total_cost.between?(params["min-val"].to_f, (params["max-val"].to_f + 1)) }
+	if params[:insurance]
+	  if !@new_results.empty?
+	    @hold_results = []	
+	    @new_results.each do |result|
+	    	if !(result.bills.where(insurance_company: current_user.insurance_company).empty?)
+	    		@hold_results << result
+	    	end
+	    	@new_results = @hold_results.flatten
+	    end
+	  else
+        @hold_results = []
+
+        @results.each do |result|
+        	if !(result.bills.where(insurance_company: current_user.insurance_company).empty?)
+	    		@hold_results << result
+	    	end
+	    end
+	    @new_results = @hold_results.flatten
+	  end
 	end
 
 	@results = @new_results
@@ -64,5 +70,3 @@ class SearchesController < ApplicationController
   end
 
 end
-
-# <%= @min_max[0] %> <%= range_field_tag(:price, "price", within: @min_max[0]..@min_max[1]) %> <%= @min_max[1] %>

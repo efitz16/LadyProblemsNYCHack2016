@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require d3
+//= require jquery-ui
+//= require jquery-ui/effect-slide
 //= require_tree .

@@ -42,7 +42,6 @@ class SearchesController < ApplicationController
 	end
 
 	if params[:distance]
-			# binding.pry
       if !@new_results.empty?
         @results1 = @new_results
         @new_results = @new_results.select { |result| result.city = current_user.city }

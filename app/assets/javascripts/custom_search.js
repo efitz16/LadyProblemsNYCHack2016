@@ -9,6 +9,8 @@ $( document ).ready(function() {
 
   $("#max-val").val(maxVal);
 
+  $( "#amounts" ).html("$" + Math.round(maxVal).toFixed(2) + " - $" + Math.round(minVal).toFixed(2) );
+
   $(".selector").slider({
   	range: true,
     min: minVal,
@@ -17,6 +19,7 @@ $( document ).ready(function() {
     slide: function( event, ui ) {
       $("#min-val").val(ui.values[ 0 ]);
       $("#max-val").val(ui.values[ 1 ]);
+      $( "#amounts" ).html("$" + Math.round(ui.values[ 0 ]).toFixed(2) + " - $" + Math.round(ui.values[ 1 ]).toFixed(2) );
     }
   });
 });

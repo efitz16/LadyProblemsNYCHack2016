@@ -8,5 +8,5 @@
   	<%= render 'customizer' %>
   </div>
 <% else %>
-	<%= link_to "Go back to search", new_search_path(:search => params[:query]) %>
+	<%= @results.empty? ? (link_to "Go back to search", root_path) : (link_to "Go back to search", new_search_path(:search => params[:query])) %>
 <% end %>

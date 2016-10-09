@@ -29,37 +29,41 @@ class SearchesController < ApplicationController
 	@new_results = @results.select { |result| result.total_cost.between?(params["min-val"].to_f, (params["max-val"].to_f + 1)) }
 
 	if params[:distance]
-      if !@new_results.empty?
-        @results1 = @new_results
-        @new_results = @new_results.select { |result| result.city == current_user.city }
-        @new_results << @results1.select { |result| result.state == current_user.state && !(@new_results.include?(result)) }
-	  else
-		@new_results = @results.select { |result| result.city == current_user.city }
-		@new_results << @results.select { |result| result.state == current_user.state && !(@new_results.include?(result)) }
-	  end
-
-	  @new_results = @new_results.flatten
+      if logged_in?
+        if !@new_results.empty?
+          @results1 = @new_results
+          @new_results = @new_results.select { |result| result.city == current_user.city }
+          @new_results << @results1.select { |result| result.state == current_user.state && !(@new_results.include?(result)) }
+	    else
+		  @new_results = @results.select { |result| result.city == current_user.city }
+		  @new_results << @results.select { |result| result.state == current_user.state && !(@new_results.include?(result)) }
+	    end
+  
+	    @new_results = @new_results.flatten
+	   end
 	end
 
 	if params[:insurance]
-	  if !@new_results.empty?
-	    @hold_results = []	
-	    @new_results.each do |result|
-	    	if !(result.bills.where(insurance_company: current_user.insurance_company).empty?)
-	    		@hold_results << result
-	    	end
-	    	@new_results = @hold_results.flatten
+	  if logged_in?
+	    if !@new_results.empty?
+	      @hold_results = []	
+	      @new_results.each do |result|
+	      	if !(result.bills.where(insurance_company: current_user.insurance_company).empty?)
+	      		@hold_results << result
+	      	end
+	      	@new_results = @hold_results.flatten
+	      end
+	    else
+          @hold_results = []
+  
+          @results.each do |result|
+          	if !(result.bills.where(insurance_company: current_user.insurance_company).empty?)
+	      		@hold_results << result
+	      	end
+	      end
+	      @new_results = @hold_results.flatten
 	    end
-	  else
-        @hold_results = []
-
-        @results.each do |result|
-        	if !(result.bills.where(insurance_company: current_user.insurance_company).empty?)
-	    		@hold_results << result
-	    	end
-	    end
-	    @new_results = @hold_results.flatten
-	  end
+	   end
 	end
 
 	@results = @new_results

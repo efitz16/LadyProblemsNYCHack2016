@@ -99,3 +99,23 @@ bill3 = entry3.bills.create!({total_without_coverage: rand(1500.00..3000.00),
     price: rand(10.00..400.00),
     quantity: [nil, 12, 5, 2].sample                                                                             })
     end
+
+130.times do |i|
+  Entry.create!({procedure_name: "Pap Smear",
+                              city: Faker::Address.city,
+                              state: Faker::Address.state,
+                              details: Faker::Lorem.paragraph,
+                              facility_name: ["Maple Valley General Hospital", "Spring Grove Hospital", "Maple Grove Medical Clinic", "Blossom Community Hospital"].sample,
+                              year: 2010 + rand(6), user: User.all.sample
+                              })
+end
+
+pap_smears = Entry.where(procedure_name: "Pap Smear")
+
+125.times do |b|
+  pap_smears.sample.bills.create!({total_without_coverage: rand(1500.00..3000.00),
+                                  insurance_company: ["Lady Problems Insurance","HCSC Group"].sample,
+                                  policy_name: ["Family Plan B-12", "Individual Platinum"].sample,
+                                  final_cost: rand(40.00..1500.00)
+                                  })
+end

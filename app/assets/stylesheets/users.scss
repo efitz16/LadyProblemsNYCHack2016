@@ -16,14 +16,25 @@
   padding: 20px 0;
 }
 
+.user-info{
+  padding: 20px 10px 40px;
+  background-color:rgba(245,146,25,0.2);
+}
+
 .entries{
-  margin-top: 20px;
+  padding-bottom:40px;
+  background-color:rgba(245,146,25,0.2);
+  border-top: 1px solid white;
+
+  h2{
+    margin-top:20px;
+  }
 
   .entry{
-    padding: 10px;
     margin-bottom: 10px;
-    background-color:rgb(237, 208, 208);
-
+    background-color:rgba(245,146,25,0.5);
+    padding: 10px;
+    border-radius: 5px;
     .entry-btns{
       @include links(white, orange);
       font-size: 30px;
@@ -45,7 +56,6 @@
 
   .profile-btns{
     @include links(black, white);
-    float:right;
     margin: 5px;
   }
 }

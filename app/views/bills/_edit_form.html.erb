@@ -8,45 +8,13 @@
   <% end %>
 
   <div>Areas with asterisks are mandatory.</div>
-  <p>
-    <div>*Procedure Name</div>
-  	<%= f.text_field :procedure_name, :value => @entry.procedure_name %>
-  </p>
-
-  <p>
-  	<div>*Year of Procedure</div>
-  	<%= f.number_field :year, min: 1930, max: Date.today.year, :value => @entry.year %>
-  </p>
-
-  <p>
-  	<div>Insurance Company</div>
+  	<%= f.text_field :procedure_name, :value => @entry.procedure_name, label:'*Procedure Name' %>
+  	<%= f.number_field :year, min: 1930, max: Date.today.year, :value => @entry.year, label:"*Year of Procedure"%>
     <%= f.collection_select :insurance_company, User::INSURANCE_COMPANIES, :to_s, :to_s, :selected => @entry.user.insurance_company %>
-  </p>
-
-  <p>
-  	<div>Policy Name</div>
     <%= f.text_field :policy_name %>
-  </p>
-
-  <div>
-  <span>
-  	<%= f.label :city %>
   	<%= f.text_field :city, :value => @entry.city %>
-  </span>
-
-  <span>
-  	<%= f.label :state %>
   	<%= f.collection_select :state, Entry::STATES, :to_s, :to_s, :selected => @entry.state %>
-  </span>
-  </div>
-
-  <p>
-  	<%= f.label :details %><br>
   	<%= f.text_area :details, cols: 50, rows: 5, :value => @entry.details  %>
-  </p>
-
-  <p>
     <%= f.submit "Update Bill" %>
-  </p>
 
 <% end %>

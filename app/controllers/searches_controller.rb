@@ -27,6 +27,7 @@ class SearchesController < ApplicationController
 	@new_results = []
 
 	@new_results = @results.select { |result| result.total_cost.between?(params["min-val"].to_f, (params["max-val"].to_f + 1)) }
+	@results_no_bills = @new_results.select { |result| result.bills.empty? }
 
 	if params[:distance]
       if logged_in?

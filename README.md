@@ -9,3 +9,5 @@ Lady Pro Tips is a 5.0 Rails web app developed by Caitlin, Elizabeth, and Erica 
 Feel more confident walking into a doctor's office or hospital. Have an idea of what your initial cost, bill items, and insurance coverage might be. Study the experiences of others who can more comfortably share their stories without divulging identifiers like name or location.
 
 Enjoy (and please contribute to!) Lady Pro Tips!
+
+![Main Search](/app/assets/images/screen.png")

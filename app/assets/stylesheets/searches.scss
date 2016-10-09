@@ -4,7 +4,9 @@
 
 .searchform{
   padding: 10%;
-  margin: 10%;
+  position: absolute;
+  top: 25%;
+  left: 8%;
   background: linear-gradient(45deg, rgba(248,176,89,1) 0%, rgba(245,146,25,0.24) 84%, rgba(245,146,25,0.1) 100%);
   
   input{
@@ -15,7 +17,7 @@
 
 
 .homepage{
-  height: 90vh;
+  height: 100vh;
   background-image: url('women_collage.jpg');
   background-size: 300px 300px;
   background-repeat: repeat;

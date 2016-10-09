@@ -27,17 +27,11 @@ class SearchesController < ApplicationController
 	@new_results = []
 
 	if params[:insurance]
-	  @results.each do |result| 
-	  	@new_results << result.bills.where(insurance_company: current_user.insurance_company)
+	  @results.each do |result|
+	  	if !(result.bills.where(insurance_company: current_user.insurance_company).empty?)
+	  		@new_results << result
+	  	end
 	  	@new_results = @new_results.flatten
-	  end
-	end
-
-	if params[:price]
-	  if !@new_results.empty?
-
-	  else
-
 	  end
 	end
 
@@ -54,6 +48,12 @@ class SearchesController < ApplicationController
 	  @new_results = @new_results.flatten
 	end
 
+	if !@new_results.empty?
+      @new_results = @new_results.select { |result| result.total_cost.between?(params["min-val"].to_f, params["max-val"].to_f) }
+	else
+	  @new_results = @results.select { |result| result.total_cost.between?(params["min-val"].to_f, params["max-val"].to_f) }
+	end
+
 	@results = @new_results
 	@results = @results.paginate(:page => params[:page], :per_page => 6)
 
@@ -62,3 +62,5 @@ class SearchesController < ApplicationController
   end
 
 end
+
+# <%= @min_max[0] %> <%= range_field_tag(:price, "price", within: @min_max[0]..@min_max[1]) %> <%= @min_max[1] %>

@@ -2,12 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#searchform{
-  padding-top: 10%;
-  margin: auto;
+.searchform{
+  padding: 10%;
+  position: absolute;
+  top: 25%;
+  left: 8%;
+  background: linear-gradient(45deg, rgba(248,176,89,1) 0%, rgba(245,146,25,0.24) 84%, rgba(245,146,25,0.1) 100%);
+  
   input{
-    height: 50px;
+    height: 40px;
+    font-weight:bold;
   }
-  // background:  linear-gradient(45deg, rgba(252,236,252,1) 0%, rgba(251,166,225,0.51) 63%, rgba(255,124,216,0.22) 100%);
+}
 
+
+.homepage{
+  height: 100vh;
+  background-image: url('women_collage.jpg');
+  background-size: 300px 300px;
+  background-repeat: repeat;
+  background-position: left top;
+  background-position: center; 
 }

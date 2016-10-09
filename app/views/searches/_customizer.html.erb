@@ -5,10 +5,10 @@
   </div>
 
   <div id="price">
-  	<%= range_field_tag(:price, within:) %>
+  	<%= @min_max[0] %> <%= range_field_tag(:price, "price", within: @min_max[0]..@min_max[1]) %> <%= @min_max[1] %>
   </div>
   <div id="distance">
-  	<%=  %>
+  	Close By? <%= check_box_tag(:distance, true) %>
   </div>
   <%= submit_tag :Change, class:'col-sm-2'%>
 <% end %>

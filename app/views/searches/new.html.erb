@@ -3,6 +3,10 @@
 <% end %>
 <%= will_paginate @results %>
 
-<div id="customizer-bar">
-<%= render 'customizer' %>
-</div>
+<% if @min_max %>
+  <div id="customizer-bar">
+  	<%= render 'customizer' %>
+  </div>
+<% else %>
+	<%= link_to "Go back to search", new_search_path(:search => params[:query]) %>
+<% end %>

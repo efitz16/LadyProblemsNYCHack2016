@@ -1,4 +1,4 @@
-LadyProblems Hackathon 2016: Lady Pro Tips
+LadyProblems Hackathon 2016: Her Health
 
 Let's face it: It's difficult to discuss health concerns! They're too personal, too embarrassing, or too inappropriate to discuss in most environments.
 
@@ -10,4 +10,4 @@ Feel more confident walking into a doctor's office or hospital. Have an idea of 
 
 Enjoy (and please contribute to!) Lady Pro Tips!
 
-![Main Search](/app/assets/images/screen.png")
+![Main Search](/app/assets/images/screen.png)

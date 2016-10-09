@@ -27,7 +27,7 @@ class SearchesController < ApplicationController
 	@new_results = []
 
 	@new_results = @results.select { |result| result.total_cost.between?(params["min-val"].to_f, (params["max-val"].to_f + 1)) }
-	@new_results = @new_results.select { |result| !(result.bills.empty?) }
+	@results_no_bills = @new_results.select { |result| result.bills.empty? }
 
 	if params[:distance]
       if logged_in?
@@ -66,6 +66,9 @@ class SearchesController < ApplicationController
 	    end
 	   end
 	end
+
+	@new_results << @results_no_bills
+	@new_results = flatten
 
 	@results = @new_results
 	@results = @results.paginate(:page => params[:page], :per_page => 6)

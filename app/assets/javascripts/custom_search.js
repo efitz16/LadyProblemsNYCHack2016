@@ -9,7 +9,7 @@ $( document ).ready(function() {
 
   $("#max-val").val(maxVal);
 
-  $( "#amounts" ).html("$" + Math.round(maxVal).toFixed(2) + " - $" + Math.round(minVal).toFixed(2) );
+  $( "#amounts" ).html("$" + Math.round(minVal).toFixed(2) + " - $" + Math.round(maxVal).toFixed(2) );
 
   $(".selector").slider({
   	range: true,

@@ -26,6 +26,8 @@ class SearchesController < ApplicationController
 
 	@new_results = []
 
+	# binding.pry
+
 	if params[:insurance]
 	  @results.each do |result|
 	  	if !(result.bills.where(insurance_company: current_user.insurance_company).empty?)
@@ -49,9 +51,9 @@ class SearchesController < ApplicationController
 	end
 
 	if !@new_results.empty?
-      @new_results = @new_results.select { |result| result.total_cost.between?(params["min-val"].to_f, params["max-val"].to_f) }
+      @new_results = @new_results.select { |result| result.total_cost.between?(params["min-val"].to_f, (params["max-val"].to_f + 1)) }
 	else
-	  @new_results = @results.select { |result| result.total_cost.between?(params["min-val"].to_f, params["max-val"].to_f) }
+	  @new_results = @results.select { |result| result.total_cost.between?(params["min-val"].to_f, (params["max-val"].to_f + 1)) }
 	end
 
 	@results = @new_results

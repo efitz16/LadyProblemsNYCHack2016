@@ -2,3 +2,11 @@
   <%= link_to "#{result.procedure_name}", entry_path(result) %><br>
 <% end %>
 <%= will_paginate @results %>
+
+<% if @min_max %>
+  <div id="customizer-bar">
+  	<%= render 'customizer' %>
+  </div>
+<% else %>
+	<%= link_to "Go back to search", new_search_path(:search => params[:query]) %>
+<% end %>

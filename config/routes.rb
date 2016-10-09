@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :items, except: [:index, :show]
   end
 
-  resources :searches, :only => [:show, :index, :new]
+  resources :searches, :only => [:index, :new]
 
+  get 'searches/customize' => 'searches#customize'
 end

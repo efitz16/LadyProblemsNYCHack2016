@@ -18,12 +18,14 @@
 
 .user-info{
   padding: 20px 10px 40px;
-  background-color:rgba(245,146,25,0.2);
+  background-color:#EFB267;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 .entries{
   padding-bottom:40px;
-  background-color:rgba(245,146,25,0.2);
+  background-color:#99CCCC;
   border-top: 1px solid white;
 
   h2{
@@ -32,17 +34,17 @@
 
   .entry{
     margin-bottom: 10px;
-    background-color:rgba(245,146,25,0.5);
+    background-color:#EFB267;
     padding: 10px;
     border-radius: 5px;
     .entry-btns{
-      @include links(white, orange);
+      @include links(black, #FAE9D3);
       font-size: 30px;
       text-align: center;
     }
     .fa-eye, .fa-pencil, .fa-trash-o{
       margin: 5px;
-      background-color: black;
+      background-color: #99CCCC;
       padding: 10px;
       width: 50px;
       height: 50px;
@@ -55,6 +57,7 @@
   margin: 20px;
 
   .profile-btns{
+    background-color: #99CCCC;  
     @include links(black, white);
     margin: 5px;
   }
